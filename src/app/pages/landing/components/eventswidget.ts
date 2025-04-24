@@ -135,13 +135,21 @@ import { EventService } from '../../bookings/services/event.service';
                     <div class="field">
                         <label for="title" class="font-bold mb-2 block">Título <span class="text-red-500">*</span></label>
                         <input pInputText id="title" formControlName="title" class="w-full" />
-                        <small *ngIf="(eventForm.get('title')?.invalid && eventForm.get('title')?.touched) || (submitted && eventForm.get('title')?.invalid)" class="p-error text-red-500">El título es requerido</small>
+                        <small *ngIf="(eventForm.get('title')?.invalid && eventForm.get('title')?.touched) || (submitted && eventForm.get('title')?.invalid)" class="p-error text-red-500">
+                            <ng-container *ngIf="eventForm.get('title')?.errors?.['required']">El título es requerido</ng-container>
+                            <ng-container *ngIf="eventForm.get('title')?.errors?.['minlength']">El título debe tener al menos 6 caracteres</ng-container>
+                            <ng-container *ngIf="eventForm.get('title')?.errors?.['maxlength']">El título no puede exceder los 100 caracteres</ng-container>
+                        </small>
                     </div>
 
                     <div class="field">
                         <label for="description" class="font-bold mb-2 block">Descripción <span class="text-red-500">*</span></label>
                         <textarea pTextarea id="description" formControlName="description" rows="4" class="w-full"></textarea>
-                        <small *ngIf="(eventForm.get('description')?.invalid && eventForm.get('description')?.touched) || (submitted && eventForm.get('description')?.invalid)" class="p-error text-red-500">La descripción es requerida</small>
+                        <small *ngIf="(eventForm.get('description')?.invalid && eventForm.get('description')?.touched) || (submitted && eventForm.get('description')?.invalid)" class="p-error text-red-500">
+                            <ng-container *ngIf="eventForm.get('description')?.errors?.['required']">La descripción es requerida</ng-container>
+                            <ng-container *ngIf="eventForm.get('description')?.errors?.['minlength']">La descripción debe tener al menos 10 caracteres</ng-container>
+                            <ng-container *ngIf="eventForm.get('description')?.errors?.['maxlength']">La descripción no puede exceder los 1000 caracteres</ng-container>
+                        </small>
                     </div>
 
                     <div class="field">
@@ -153,7 +161,11 @@ import { EventService } from '../../bookings/services/event.service';
                     <div class="field">
                         <label for="location" class="font-bold mb-2 block">Ubicación <span class="text-red-500">*</span></label>
                         <input pInputText id="location" formControlName="location" class="w-full" />
-                        <small *ngIf="(eventForm.get('location')?.invalid && eventForm.get('location')?.touched) || (submitted && eventForm.get('location')?.invalid)" class="p-error text-red-500">La ubicación es requerida</small>
+                        <small *ngIf="(eventForm.get('location')?.invalid && eventForm.get('location')?.touched) || (submitted && eventForm.get('location')?.invalid)" class="p-error text-red-500">
+                            <ng-container *ngIf="eventForm.get('location')?.errors?.['required']">La ubicación es requerida</ng-container>
+                            <ng-container *ngIf="eventForm.get('location')?.errors?.['minlength']">La ubicación debe tener al menos 6 caracteres</ng-container>
+                            <ng-container *ngIf="eventForm.get('location')?.errors?.['maxlength']">La ubicación no puede exceder los 100 caracteres</ng-container>
+                        </small>
                     </div>
 
                     <div class="field">
@@ -162,20 +174,28 @@ import { EventService } from '../../bookings/services/event.service';
                         <small *ngIf="(eventForm.get('capacity')?.invalid && eventForm.get('capacity')?.touched) || (submitted && eventForm.get('capacity')?.invalid)" class="p-error text-red-500">
                             <ng-container *ngIf="eventForm.get('capacity')?.errors?.['required']">La capacidad es requerida</ng-container>
                             <ng-container *ngIf="eventForm.get('capacity')?.errors?.['min']">La capacidad mínima es 1</ng-container>
-                            <ng-container *ngIf="eventForm.get('capacity')?.errors?.['max']">La capacidad máxima permitida es 99999</ng-container>
+                            <ng-container *ngIf="eventForm.get('capacity')?.errors?.['max']">La capacidad máxima permitida es 1000000</ng-container>
                         </small>
                     </div>
 
                     <div class="field">
                         <label for="organizer" class="font-bold mb-2 block">Organizador <span class="text-red-500">*</span></label>
                         <input pInputText id="organizer" formControlName="organizer" class="w-full" />
-                        <small *ngIf="(eventForm.get('organizer')?.invalid && eventForm.get('organizer')?.touched) || (submitted && eventForm.get('organizer')?.invalid)" class="p-error text-red-500">El organizador es requerido</small>
+                        <small *ngIf="(eventForm.get('organizer')?.invalid && eventForm.get('organizer')?.touched) || (submitted && eventForm.get('organizer')?.invalid)" class="p-error text-red-500">
+                            <ng-container *ngIf="eventForm.get('organizer')?.errors?.['required']">El organizador es requerido</ng-container>
+                            <ng-container *ngIf="eventForm.get('organizer')?.errors?.['minlength']">El organizador debe tener al menos 3 caracteres</ng-container>
+                            <ng-container *ngIf="eventForm.get('organizer')?.errors?.['maxlength']">El organizador no puede exceder los 100 caracteres</ng-container>
+                        </small>
                     </div>
 
                     <div class="field">
                         <label for="image" class="font-bold mb-2 block">URL de imagen <span class="text-red-500">*</span></label>
                         <input pInputText id="image" formControlName="image" class="w-full" />
-                        <small *ngIf="(eventForm.get('image')?.invalid && eventForm.get('image')?.touched) || (submitted && eventForm.get('image')?.invalid)" class="p-error text-red-500">La URL de la imagen es requerida</small>
+                        <small *ngIf="(eventForm.get('image')?.invalid && eventForm.get('image')?.touched) || (submitted && eventForm.get('image')?.invalid)" class="p-error text-red-500">
+                            <ng-container *ngIf="eventForm.get('image')?.errors?.['required']">La URL de la imagen es requerida</ng-container>
+                            <ng-container *ngIf="eventForm.get('image')?.errors?.['minlength']">La URL de la imagen debe tener al menos 3 caracteres</ng-container>
+                            <ng-container *ngIf="eventForm.get('image')?.errors?.['maxlength']">La URL de la imagen no puede exceder los 255 caracteres</ng-container>
+                        </small>
                     </div>
                 </div>
 
@@ -219,13 +239,13 @@ export class EventsWidget implements OnInit, OnDestroy {
     initForm() {
         this.eventForm = this.formBuilder.group({
             id: [null],
-            title: ['', Validators.required],
-            description: ['', Validators.required],
+            title: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+            description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
             date: [null, Validators.required],
-            location: ['', Validators.required],
-            capacity: [1000, [Validators.required, Validators.min(1), Validators.max(99999)]],
-            organizer: ['', Validators.required],
-            image: ['', Validators.required]
+            location: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+            capacity: [1000, [Validators.required, Validators.min(1), Validators.max(1000000)]],
+            organizer: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+            image: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]]
         });
     }
 
