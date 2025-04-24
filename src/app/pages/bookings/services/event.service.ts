@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../enviroments/enviroment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { StorageService } from '../../shared/services/storage.service';
+import { environment } from '../../../../enviroments/enviroment';
+import { StorageService } from '../../../shared/services/storage.service';
 
 export interface EventItem {
     id: number;

@@ -8,7 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { BookingItem, EventItem, EventService } from '../../service/event.service';
+
 import { LoaderService } from '../../../shared/services/loader.service';
 import { finalize, Subject, takeUntil } from 'rxjs';
 import { DialogModule } from 'primeng/dialog';
@@ -19,6 +19,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { BookingItem, EventItem, EventService } from '../../bookings/services/event.service';
 
 @Component({
     selector: 'events-widget',
