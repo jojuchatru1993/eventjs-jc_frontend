@@ -97,8 +97,9 @@ import { EventService } from '../../bookings/services/event.service';
                         </ul>
                         <div class="mt-auto pt-3 flex gap-2">
                             <ng-container *ngIf="isAuthenticated(); else notAuthenticated">
-                                <button *ngIf="!event.hasBooking" pButton pRipple label="Reservar" class="p-button-rounded flex-grow font-light leading-tight bg-blue-500 text-white" (click)="createBooking(event.id.toString())"></button>
+                                <button *ngIf="!event.hasBooking && event.bookingsCount < event.capacity" pButton pRipple label="Reservar" class="p-button-rounded flex-grow font-light leading-tight bg-blue-500 text-white" (click)="createBooking(event.id.toString())"></button>
                                 <button *ngIf="event.hasBooking" pButton pRipple label="Cancelar reserva" class="p-button-rounded flex-grow font-light leading-tight p-button-danger" (click)="deleteBooking(event.id.toString())"></button>
+                                <div *ngIf="!event.hasBooking && event.bookingsCount >= event.capacity" class="p-button-rounded flex-grow font-light leading-tight p-button-outlined p-button-secondary flex items-center justify-center">Evento lleno</div>
                             </ng-container>
                             <ng-template #notAuthenticated>
                                 <button pButton pRipple label="Iniciar sesión" class="p-button-rounded flex-grow font-light leading-tight bg-blue-500 text-white" (click)="navigateToLogin()"></button>
