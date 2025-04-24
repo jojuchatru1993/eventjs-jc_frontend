@@ -3,26 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../enviroments/enviroment';
 import { StorageService } from '../../../shared/services/storage.service';
-
-export interface EventItem {
-    id: number;
-    title: string;
-    description: string;
-    date: string;
-    location: string;
-    capacity: number;
-    organizer: string;
-    image: string;
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: string;
-    bookingsCount: number;
-    hasBooking: boolean;
-}
-
-export interface BookingItem {
-    eventId: string;
-}
+import { EventItem } from '../interfaces/even-item.interface';
+import { BookingItem } from '../interfaces/booking-item.interface';
 
 @Injectable({
     providedIn: 'root'

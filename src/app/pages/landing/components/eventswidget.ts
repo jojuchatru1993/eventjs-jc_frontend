@@ -19,7 +19,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import { BookingItem, EventItem, EventService } from '../../bookings/services/event.service';
+import { EventItem } from '../../bookings/interfaces/even-item.interface';
+import { EventService } from '../../bookings/services/event.service';
+import { BookingItem } from '../../bookings/interfaces/booking-item.interface';
 
 @Component({
     selector: 'events-widget',
@@ -409,7 +411,7 @@ export class EventsWidget implements OnInit, OnDestroy {
                 finalize(() => this.loaderService.hide())
             )
             .subscribe({
-                next: (resp: BookingItem) => {
+                next: () => {
                     this.generateEvents();
                 },
                 error: (error) => {
