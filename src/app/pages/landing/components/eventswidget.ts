@@ -18,10 +18,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { EventItem } from '../../bookings/interfaces/even-item.interface';
 import { EventService } from '../../bookings/services/event.service';
-import { BookingItem } from '../../bookings/interfaces/booking-item.interface';
 
 @Component({
     selector: 'events-widget',
@@ -196,6 +195,7 @@ export class EventsWidget implements OnInit, OnDestroy {
     private formBuilder = inject(FormBuilder);
     private router = inject(Router);
     private confirmationService = inject(ConfirmationService);
+    private messageService = inject(MessageService);
 
     events = signal<EventItem[]>([]);
     eventsVisible = signal<EventItem[]>([]);
@@ -301,10 +301,12 @@ export class EventsWidget implements OnInit, OnDestroy {
                 )
                 .subscribe({
                     next: () => {
+                        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Evento actualizado correctamente' });
                         this.generateEvents();
                         this.hideDialog();
                     },
                     error: (error) => {
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo actualizar el evento' });
                         console.error(error);
                     }
                 });
@@ -318,10 +320,12 @@ export class EventsWidget implements OnInit, OnDestroy {
                 )
                 .subscribe({
                     next: () => {
+                        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Evento creado correctamente' });
                         this.generateEvents();
                         this.hideDialog();
                     },
                     error: (error) => {
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear el evento' });
                         console.error(error);
                     }
                 });
@@ -341,9 +345,11 @@ export class EventsWidget implements OnInit, OnDestroy {
                     )
                     .subscribe({
                         next: () => {
+                            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Evento eliminado correctamente' });
                             this.generateEvents();
                         },
                         error: (error) => {
+                            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar el evento' });
                             console.error(error);
                         }
                     });
@@ -412,9 +418,11 @@ export class EventsWidget implements OnInit, OnDestroy {
             )
             .subscribe({
                 next: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Reserva creada correctamente' });
                     this.generateEvents();
                 },
                 error: (error) => {
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo realizar la reserva' });
                     console.error(error);
                 }
             });
@@ -430,9 +438,11 @@ export class EventsWidget implements OnInit, OnDestroy {
             )
             .subscribe({
                 next: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Reserva cancelada correctamente' });
                     this.generateEvents();
                 },
                 error: (error) => {
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo cancelar la reserva' });
                     console.error(error);
                 }
             });
